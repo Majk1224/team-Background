@@ -1,0 +1,99 @@
+.wrap{
+     width: 100%;
+     height:100%;
+      
+      display: flex;
+      flex-direction: column;
+      padding:0 20px;
+      box-sizing: border-box;
+      .header{
+          width: 100%;
+          height:120px;
+          line-height: 100px;
+          font-size: 25px;
+          color:black;
+      }
+
+      .wrapper{
+          width:100%;
+          height:300px;
+          background:#fff;
+          border-radius: 15px;
+          box-sizing: border-box;
+          
+        .leiXing{
+            display: flex;
+            padding:10px 20px;
+            box-sizing: border-box;
+            .getsetion{
+                margin: 5px;
+            }
+        }
+        .kaoShi{
+            display: flex;
+            // padding:20px 40px;
+            box-sizing: border-box;
+            .shi{
+                display: flex;
+                padding:10px 20px;
+                // padding:0 40px;
+                box-sizing: border-box;
+            }
+        }
+      }
+      .footer{
+        width:100%;
+        flex:1;
+        background:#fff;
+        border-radius: 10px;
+        margin-top:20px;
+        display: flex;
+        flex-direction: column;
+        .dl{
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid #ccc;
+            height:150px;
+            align-items: center;
+            padding:0 15px;
+            box-sizing: border-box;
+            .dt{
+                padding:10px;
+                font-size: 20px;
+                .titles{
+                    color:rgba(0, 0, 0, 0.65);
+                    // font-weight: bold;
+                    margin-bottom: 4px;
+                    font-size: 14px;
+                    line-height: 22px;
+                }
+              span{
+                color: #1890ff;
+                background: #e6f7ff;
+                border-color: #91d5ff;
+                border:1px solid #91d5ff;
+                padding: 5px;
+                //   box-sizing: border-box;
+                border-radius: 6px;
+                margin: 5px;
+                //   background:rgba(78, 66, 184, 0.719);
+                   font-size:13px;
+              }
+              .namea{
+                color: #0139FD;
+                // background-color: transparent;
+                // text-decoration: none;
+                // outline: none;
+                cursor: pointer;
+                font-size: 16px;
+                margin-top: 5px;
+              }
+            }
+            .dd{
+                font-size: 15px;
+                color: #0139FD;
+                cursor: pointer;
+            }
+        }
+    }
+ }
