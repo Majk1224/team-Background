@@ -1,10 +1,10 @@
 import style from './Home.scss';
 import React from 'react';
- import Menus from '../../components/Menu'
- import { Route,Redirect,Switch } from 'dva/router';
+import Menus from '../../components/Menu'
+import { Route,Redirect,Switch } from 'dva/router';
 import { Layout,Dropdown,Avatar,Menu} from 'antd';
 import { QuestionsAdd,QuestionsType,QuestionsView,QuestionViewEdit,QuestionsDetail} from "./Questins";
-
+import { AddUser,UserShow } from "./UserGuan";
 const { Header, Content, Sider } = Layout;
 
 function Home(props){
@@ -62,6 +62,9 @@ function Home(props){
                             <Route path="/home/questions/view" component={QuestionsView}></Route>
                             <Route path='/home/questions/Edit' component={QuestionViewEdit}></Route>
                             <Route path='/home/questions/Detail' component={QuestionsDetail}/>
+                            <Route path='/home/userGuan/addUser' component={AddUser}/>
+                            <Route path='/home/userGuan/UserShow' component={UserShow}/>
+                            
                             <Redirect from="/home" to="/home/questions/add"></Redirect>
                        </Switch>
                         

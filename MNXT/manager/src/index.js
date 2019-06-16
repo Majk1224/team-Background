@@ -12,7 +12,8 @@ app.model(require('./models/user').default);
 app.model(require('./models/questionsAdd').default);
 app.model(require('./models/questionsType').default);
 app.model(require('./models/questionView').default);
-
+app.model(require('./models/userGuan/addUser').default);
+app.model(require('./models/userGuan/userShow').default);
 
 // 4. Router
 app.router(require('./router').default);
