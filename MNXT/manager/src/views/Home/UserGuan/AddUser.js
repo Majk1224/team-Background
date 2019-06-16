@@ -6,7 +6,7 @@ function AddUser(){
     )
 }
 const mapStateToProps=state=>{
-    return state.addUser
+    return state.Users
 }
 const mapDispatchToProps=dispatch=>{
     return {
