@@ -36,8 +36,8 @@ function Home(props){
                 <div className={style.header_user}>
                     <Dropdown overlay={menu}>
                         <a className="ant-dropdown-link" href="">
-                            <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" className={style.Avatar}/>
-                            <span className={style.user_name}>kkkkk</span>
+                            <Avatar src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3347758278,1051941292&fm=26&gp=0.jpg" className={style.Avatar}/>
+                            <span className={style.user_name}>UserOn</span>
                         </a>
                     </Dropdown>
                 </div>
