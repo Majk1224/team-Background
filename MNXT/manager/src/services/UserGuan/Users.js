@@ -47,3 +47,12 @@ export function identity_view_authority_relation() {
     method:"GET"
   });
 }
+//添加用户
+export function user_Add(params) {
+ console.log(params)
+  return request({
+    url:"/user",
+    method:"POST",
+    data:params
+  });
+}

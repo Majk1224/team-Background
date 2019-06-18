@@ -40,7 +40,7 @@ function UserShow(props) {
     props.viewAuthor();
     props.viewRelate();
   }, []);
-  const {userAll}=props
+ 
  
   const contentList = {
     tab1: (
@@ -51,21 +51,21 @@ function UserShow(props) {
             {
               title: "用户名",
               key:"name",
-              render: userAll => <>{userAll.user_name}</>
+              render: text => <>{text.user_name}</>
             },
             {
               title: "密码",
               key:"pwd",
-              render: userAll => <>{userAll.user_pwd}</>
+              render: text => <>{text.user_pwd}</>
             },
             {
               title: "身份",
               key:"text",
-              render: userAll => <>{userAll.identity_text}</>
+              render: text => <>{text.identity_text}</>
             }
           ]}
-          dataSource={userAll.users}
-          rowKey={userAll => `${userAll.user_id}`}
+          dataSource={props.userAll}
+          rowKey={record => `${record.user_id}`}
         />
       </div>
     ),
@@ -77,11 +77,11 @@ function UserShow(props) {
             {
               title: "身份名称",
               key:"identTexts",
-              render: userAll => <>{userAll.identity_text}</>
+              render: text => <>{text.identity_text}</>
             }
           ]}
-          dataSource={userAll.ident}
-          rowKey={userAll => `${userAll.identity_id}`}
+          dataSource={props.identity}
+          rowKey={record => `${record.identity_id}`}
         />
       </div>
     ),
@@ -93,20 +93,20 @@ function UserShow(props) {
             {
               title: "api权限名称",
               key:"apiText",
-              render: userAll => <>{userAll.api_authority_text}</>
+              render: text => <>{text.api_authority_text}</>
             },
             {
               title: "api权限url",
               key:"apiUrl",
-              render: userAll => <>{userAll.api_authority_url}</>
+              render: text => <>{text.api_authority_url}</>
             },{
               title: "api权限方法",
               key:"apiMrthod",
-              render: userAll => <>{userAll.api_authority_method}</>
+              render: text => <>{text.api_authority_method}</>
             }
           ]}
-          dataSource={userAll.apiAuth}
-          rowKey={userAll => `${userAll.api_authority_id}`}
+          dataSource={props.apiAuthorityAll}
+          rowKey={record => `${record.api_authority_id}`}
         />
       </div>
     ),
@@ -133,8 +133,8 @@ function UserShow(props) {
               render: text => <>{text.api_authority_method}</>
             }
           ]}
-          dataSource={props.userAll.identityApi}
-          rowKey={userAll => `${userAll.identity_api_authority_relation_id}`}
+          dataSource={props.identApiAuthorAll}
+          rowKey={record => `${record.identity_api_authority_relation_id}`}
         />
       </div>
     ),
@@ -146,16 +146,16 @@ function UserShow(props) {
             {
               title: "视图权限名称",
               key:"viewText",
-              render: userAll => <>{userAll.view_authority_text}</>
+              render: text => <>{text.view_authority_text}</>
             },
             {
               title: "视图id",
               key:"viewId",
-              render: userAll => <>{userAll.view_id}</>
+              render: text => <>{text.view_id}</>
             }
           ]}
-          dataSource={userAll.viewAu}
-          rowKey={userAll => `${userAll.view_authority_id}`}
+          dataSource={props.viewAuthorsAll}
+          rowKey={record => `${record.view_authority_id}`}
         />
       </div>
     ),
@@ -167,21 +167,21 @@ function UserShow(props) {
             {
               title: "身份",
               key:"identText",
-              render: userAll => <>{userAll.identity_text}</>
+              render: text => <>{text.identity_text}</>
             },
             {
               title: "视图名称",
               key:"viewAuther",
-              render: userAll => <>{userAll.view_authority_text}</>
+              render: text => <>{text.view_authority_text}</>
             },
             {
               title: "视图id",
               key:"textView",
-              render: userAll => <>{userAll.view_id}</>
+              render: text => <>{text.view_id}</>
             }
           ]}
-          dataSource={userAll.viewRe}
-          rowKey={userAll => `${userAll.identity_view_authority_relation_id}`}
+          dataSource={props.viewRelatesALL}
+          rowKey={record => `${record.identity_view_authority_relation_id}`}
         />
       </div>
     )
@@ -230,6 +230,7 @@ const mapDispatchToProps = dispatch => {
         type: "users/showUser"
       });
     },
+    //身份数据
     userIdentity() {
       dispatch({
         type: "users/identity"
