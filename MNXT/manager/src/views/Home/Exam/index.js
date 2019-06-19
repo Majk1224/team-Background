@@ -1,11 +1,8 @@
-import React, { Component } from 'react'
+import AddExam from './AddExam';
+import ListExam from './ListExam';
+import createNew from './createNew';
+import ExamDetail from './ExamDetail';
 
-export default class ClassGrad extends Component {
-    render() {
-        return (
-            <div>
-                考试管理
-            </div>
-        )
-    }
+export{
+    AddExam,ListExam,createNew,ExamDetail
 }

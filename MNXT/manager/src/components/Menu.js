@@ -1,9 +1,13 @@
 import React from 'react'
 import {Menu,Icon} from 'antd'
 import {Link} from 'dva/router';
+import {injectIntl} from 'react-intl'
+
 const { SubMenu } = Menu;
 
-function MenuComp(){
+function MenuComp(props){
+    // console.log(props.intl);
+
     return (
         <Menu
             mode="inline"
@@ -16,19 +20,19 @@ function MenuComp(){
                 title={
                 <span>
                     <Icon type="user" />
-                   
-                   试题管理
+                    {props.intl.formatMessage({id: 'router.questions'})}
+                   {/* 试题管理 */}
                 </span>
                 }
             >
                 <Menu.Item key="1">
-                    <Link to="/home/questions/add">添加试题</Link>
+                    <Link to="/home/questions/add">{props.intl.formatMessage({id: 'router.questions.add'})}</Link>
                 </Menu.Item>
                 <Menu.Item key="2">
-                    <Link to="/home/questions/type">试题分类</Link>
+                    <Link to="/home/questions/type">{props.intl.formatMessage({id: 'router.questions.type'})}</Link>
                 </Menu.Item>
                 <Menu.Item key="3">
-                    <Link to="/home/questions/view">查看试题</Link>  
+                    <Link to="/home/questions/view">{props.intl.formatMessage({id: 'router.questions.view'})}</Link>  
                 </Menu.Item>
             
             </SubMenu>
@@ -57,8 +61,12 @@ function MenuComp(){
                 </span>
                 }
             >
-                <Menu.Item key="9">添加考试</Menu.Item>
-                <Menu.Item key="10">试卷列表</Menu.Item>
+                <Menu.Item key="9">
+                    <Link to="/home/exam/addexam"> 添加考试</Link>
+                </Menu.Item>
+                <Menu.Item key="10">
+                    <Link to="/home/exam/listExam"> 试卷列表</Link>
+                </Menu.Item>
             
             </SubMenu>
             <SubMenu
@@ -84,10 +92,13 @@ function MenuComp(){
                 </span>
                 }
             >
-                <Menu.Item key="17">待批班级</Menu.Item>
+                <Menu.Item key="17">
+                    <Link to="/home/papers/Awaiting"> 待批班级</Link>
+
+                </Menu.Item>
                 
             </SubMenu>
     </Menu>
     )
 }
-export default MenuComp
+export default injectIntl(MenuComp)

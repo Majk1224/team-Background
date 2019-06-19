@@ -49,9 +49,59 @@ export function identity_view_authority_relation() {
 }
 //添加用户
 export function user_Add(params) {
- console.log(params)
+//  console.log(params)
   return request({
     url:"/user",
+    method:"POST",
+    data:params
+  });
+}
+//更新用户
+export function user_UpData(params) {
+
+  return request({
+    url:"/user/user",
+    method:"PUT",
+    data:params
+  });
+}
+//添加身份/user/identity/edit
+export function Add_identity(params) {
+  
+  return request({
+    url:"/user/identity/edit",
+    method:"GET",
+   params
+  });
+}
+//添加api接口权限
+export function Add_authorityApi(params) {
+  return request({
+    url:"/user/authorityApi/edit",
+    method:"GET",
+    params
+  });
+}
+//添加视图接口权限
+export function authorityViewEdit(params) {
+  return request({
+    url:"/user/authorityView/edit",
+    method:"GET",
+    params
+  });
+}
+//给身份设定api接口权限
+export function userSetIdentityApi(params) {
+  return request({
+    url:"/user/setIdentityApi",
+    method:"POST",
+    data:params
+  });
+}
+//给身份设定视图权限
+export function userSetIdentityView(params) {
+  return request({
+    url:"/user/setIdentityView",
     method:"POST",
     data:params
   });

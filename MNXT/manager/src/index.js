@@ -8,11 +8,14 @@ const app = dva();
 // app.use({});
 
 // 3. Model
+app.model(require('./models/global').default);
 app.model(require('./models/user').default);
 app.model(require('./models/questionsAdd').default);
 app.model(require('./models/questionsType').default);
 app.model(require('./models/questionView').default);
 app.model(require('./models/userGuan/Users').default);
+app.model(require('./models/exam').default);
+
 
 
 // 4. Router

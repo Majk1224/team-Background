@@ -1,9 +1,10 @@
 import {
   usersShow,USerIdentity,api_authority,identity_api_authority_relation,
-  view_authority,identity_view_authority_relation,user_Add
+  view_authority,identity_view_authority_relation,user_Add,user_UpData,
+  Add_identity,Add_authorityApi,authorityViewEdit,userSetIdentityApi,userSetIdentityView
 
 } from '../../services/UserGuan/Users';
-// console.log(usersShow)
+// console.log(authorityViewEdit)
 export default {
     // 命名空间
     namespace: 'users',
@@ -16,7 +17,13 @@ export default {
       identApiAuthorAll:[],//身份和api接口关系
       viewAuthorsAll:[],//视图权限
       viewRelatesALL:[],//身份和视图权限关系
-      Add_user:{}
+      Add_user:{},//添加用户
+      up_Users:{},//更改用户
+      identityAdd:{},//添加身份
+      AddApi:{},//添加api接口权限
+      ViewEditAdd:{},//添加视图接口权限
+      SetApi:{},//给身份设定api接口权限
+      SetView:{}//给身份设定视图权限
     },
   
     subscriptions: {
@@ -62,8 +69,46 @@ export default {
          const data= yield call(user_Add,payload)
         
         yield put({ type: 'add_user',action:data})
-        //  yield put({ type: 'viewRelates',action:data.data });
       },
+      //更新用户
+      *upData_User({ payload }, { call, put }) {  // eslint-disable-line
+      
+        const data= yield call(user_UpData,payload)
+       
+       yield put({ type: 'user_Up',action:data})
+      
+     },
+     //添加身份
+     *identityEdit({ payload }, { call, put }) {  // eslint-disable-line
+        const data= yield call(Add_identity,payload)
+        yield put({ type: 'AddIdentity',action:data})
+      },
+      //添加api接口权限
+      *authorityApiEdit({ payload }, { call, put }) {  // eslint-disable-line
+         const data= yield call(Add_authorityApi,payload)
+         yield put({ type: 'authorityApi',action:data})
+      },
+      //添加视图接口权限
+      *AddAuthorityView({ payload }, { call, put }) { 
+        
+        const data=yield call(authorityViewEdit,payload)
+        yield put({ type: 'ViewEdit',action:data})
+
+     },
+     //给身份设定api接口权限
+     *SetIdentityApi({ payload }, { call, put }) { 
+      const data=yield call(userSetIdentityApi,payload)
+     
+      yield put({ type: 'SetentityApi',action:data})
+
+      },
+      //给身份设定视图权限
+      *SetIdentityView({ payload }, { call, put }) { 
+        const data=yield call(userSetIdentityView,payload)
+        // console.log(data)
+        yield put({ type: 'SetentityView',action:data})
+  
+        },
     },
   
     // 同步操作
@@ -88,7 +133,25 @@ export default {
       },
       add_user(state,{action}){
         return {...state,Add_user:action}
-      }
+      },
+      user_Up(state,{action}){
+         return {...state,up_Users:action}
+      },
+      AddIdentity(state,{action}){
+        return {...state,identityAdd:action}
+     },
+     authorityApi(state,{action}){
+        return {...state,AddApi:action}
+      },
+      ViewEdit(state,{action}){
+        return {...state,ViewEditAdd:action}
+      },
+      SetentityApi(state,{action}){
+        return {...state,SetApi:action}
+      },
+      SetentityView(state,{action}){
+        return {...state,SetView:action}
+      },
     },
   
   };

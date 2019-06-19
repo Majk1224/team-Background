@@ -5,7 +5,13 @@ import { Route,Redirect,Switch } from 'dva/router';
 import { Layout,Dropdown,Avatar,Menu} from 'antd';
 import { QuestionsAdd,QuestionsType,QuestionsView,QuestionViewEdit,QuestionsDetail} from "./Questins";
 import { AddUser,UserShow } from "./UserGuan";
+import { AddExam ,ListExam,createNew,ExamDetail} from "./Exam";
+import {Awaiting } from "./papers";
+
+import {connect} from 'dva';
 const { Header, Content, Sider } = Layout;
+
+
 
 function Home(props){
       const menu = (
@@ -33,6 +39,7 @@ function Home(props){
                 <div className={style.header_img}>
                     <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1551624718911&di=4a7004f8d71bd8da84d4eadf1b59e689&imgtype=0&src=http%3A%2F%2Fimg105.job1001.com%2Fupload%2Falbum%2F2014-10-15%2F1413365052_95IE3msH.jpg" alt=""/>
                 </div>
+                <button onClick={()=>props.changeLocal(props.locale==='zh'?'en':'zh')}>{props.locale==='zh'?'中文':'英文'}</button>
                 <div className={style.header_user}>
                     <Dropdown overlay={menu}>
                         <a className="ant-dropdown-link" href="">
@@ -64,7 +71,11 @@ function Home(props){
                             <Route path='/home/questions/Detail' component={QuestionsDetail}/>
                             <Route path='/home/userGuan/addUser' component={AddUser}/>
                             <Route path='/home/userGuan/UserShow' component={UserShow}/>
-                            
+                            <Route path='/home/exam/addexam' component={AddExam}/>
+                            <Route path='/home/exam/listExam' component={ListExam}/>
+                            <Route path='/home/exam/edit' component={createNew}/>
+                            <Route path='/home/exam/Detail' component={ExamDetail}/>
+                            <Route path='/home/papers/Awaiting' component={Awaiting}/>
                             <Redirect from="/home" to="/home/questions/add"></Redirect>
                        </Switch>
                         
@@ -75,4 +86,22 @@ function Home(props){
       
     )
 }
-export default Home
+const mapStateToProps = state=>{
+    // console.log('state..', state);
+    return {
+    //   loading: state.loading.global,
+      locale: state.global.locale
+    }
+  }
+  
+  const mapDispatchToProps = dispatch=>{
+    return {
+      changeLocal: payload=>{
+        dispatch({
+          type: 'global/changeLocale',
+          payload
+        })
+      }
+    }
+  }
+export default connect(mapStateToProps,mapDispatchToProps)(Home)

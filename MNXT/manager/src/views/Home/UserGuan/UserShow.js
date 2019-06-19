@@ -236,6 +236,7 @@ const mapDispatchToProps = dispatch => {
         type: "users/identity"
       });
     },
+    //api数据
     apiAuthority() {
       dispatch({
         type: "users/apiAuthority"
@@ -246,6 +247,7 @@ const mapDispatchToProps = dispatch => {
         type: "users/identApiAuthor"
       });
     },
+    //视图接口
     viewAuthor() {
       dispatch({
         type: "users/viewAuthor"
