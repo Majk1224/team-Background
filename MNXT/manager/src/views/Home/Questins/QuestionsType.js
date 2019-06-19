@@ -42,22 +42,32 @@ class QuestionsType extends Component {
         }
     }
     render() {
+      console.log(this.props.typeData)
         const {typeData} = this.props
           const columns = [
             {
+              key: 'questions_type_sort',
+              id:1,
               title: '类型ID',
               dataIndex: 'questions_type_sort',
-              key: 'questions_type_sort',
+             
+             
             },
             {
+              key: 'questions_type_text',
+              id:2,
               title: '类型名称',
               dataIndex: 'questions_type_text',
-              key: 'questions_type_text',
+            
+            
             },
             {
+              key: 'ss',
+              id:3,
               title: '操作',
               dataIndex: '',
-              key: '',
+           
+           
             },
           ];
         return (
@@ -71,10 +81,11 @@ class QuestionsType extends Component {
             visible={this.state.visible}
             onOk={this.handleOk}
             onCancel={this.handleCancel}
+            // key={key}
           >
             <Input placeholder="请输入类型名称" onBlur={(e)=>this.handleValue(e)}/>
           </Modal>
-          <Table  columns={columns} dataSource={typeData?typeData.data:null} />
+          <Table rowKey={act=>act.questions_type_sort} columns={columns} dataSource={typeData?typeData.data:null}  />
         </div>
          );
     }

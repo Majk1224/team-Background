@@ -1,7 +1,7 @@
 import axios from 'axios';
 import {getToken} from './user';
 const service=axios.create({
-  baseURL:"http://169.254.78.4:7001/",
+  baseURL:"http://127.0.0.1:7001/",
   timeout:5000
 })
 // 登录态 拦截 通用的业务逻辑
