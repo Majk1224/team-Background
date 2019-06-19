@@ -42,7 +42,7 @@ class QuestionsType extends Component {
         }
     }
     render() {
-      console.log(this.props.typeData)
+      // console.log(this.props.typeData)
         const {typeData} = this.props
           const columns = [
             {
@@ -70,6 +70,7 @@ class QuestionsType extends Component {
            
             },
           ];
+          console.log(columns)
         return (
         <div>
           <Breadcrumb style={{ margin: '16px 0' }}>
