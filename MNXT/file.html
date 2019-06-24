@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>文件上传</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <input type="file" name="" id="">
+    <script>
+        var ele = document.querySelector('input');
+            ele.onchange = function(e){
+                console.log('e...', e);
+                let files = e.target.files;
+                // // 创建一个formData
+                // let form = new FormData();
+                // for (let i=0,len=files.length; i<len;i++){
+                //     console.log(files[i].name);
+                //     form.append(files[i].name, files[i]);
+                // }
+
+                // axios({
+                //     method: 'post',
+                //     url: 'http://123.206.55.50:11000/upload',
+                //     data: form
+                // }).then(body=>{
+                //     console.log('body...', body);
+                // }).catch(e=>{
+                //     console.log('e..', e);
+                // })
+
+               // 图片转成base64 
+               
+                for (let i=0,len=files.length; i<len;i++){
+                    var reader = new FileReader();
+                    reader.onload=function(){
+                        axios({
+                                method: 'post',
+                                url: 'http://123.206.55.50:11000/upload_base64',
+                                data: {base64: this.result}
+                            }).then(body=>{
+                                console.log('body...', body);
+                            }).catch(e=>{
+                                console.log('e..', e);
+                            })
+                    }
+                reader.readAsDataURL(files[i]);
+                }
+            }
+    </script>
+</body>
+</html>

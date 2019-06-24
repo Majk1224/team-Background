@@ -19,17 +19,22 @@ function Home(props){
             <Menu>
                 <Menu.Item>
                     <a target="_blank" rel="noopener noreferrer" href="http://www.alipay.com/">
-                    1st menu item
+                        个人中心
                     </a>
                 </Menu.Item>
                 <Menu.Item>
                     <a target="_blank" rel="noopener noreferrer" href="http://www.taobao.com/">
-                    2nd menu item
+                        我的班级
                     </a>
                 </Menu.Item>
                 <Menu.Item>
                     <a target="_blank" rel="noopener noreferrer" href="http://www.tmall.com/">
-                    3rd menu item
+                        设置
+                    </a>
+                </Menu.Item>
+                <Menu.Item>
+                    <a target="_blank" rel="noopener noreferrer">
+                        退出登录
                     </a>
                 </Menu.Item>
             </Menu>

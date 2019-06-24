@@ -1,5 +1,5 @@
 import {login,UserInfo,getViewAuthority} from '../services'
-import { setToken,getToken } from "../utils/user";
+import { setToken,getToken,removeToken } from "../utils/user";
 import {routerRedux} from 'dva/router';
 import allView from "../router/config";
 
@@ -94,8 +94,6 @@ export default {
         return {...state, userInfo: payload}
       },
       updateViewAuthority(state, {payload}){
-     
-      
         // 筛选出我所有的前端路由权限
         let myView = allView.routes,
             //没有权限访问的路由
@@ -117,6 +115,13 @@ export default {
         })
    
         return {...state, viewAuthority: payload, myView, forbiddenView}
+      },
+      //退出登录
+      logout(state){
+        //清除登录态
+        removeToken()
+        //清除权限
+        return {...state,userInfo:{},myView:[],viewAuthority:[],forbiddenView:[]}
       }
     },
   

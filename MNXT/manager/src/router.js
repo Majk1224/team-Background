@@ -30,6 +30,7 @@ const RouterView = connect(mapStateToProps)(({locale,history})=>{
                   <Route path='/403' component={forbidden}/>
                   <Route path='/404' component={notFont}/>
                   <Route path="/"  component={Home}></Route>
+                  {/* <Redirect to="/home" from="/"></Redirect> */}
               </Switch>
             </Router>
         </IntlProvider>
