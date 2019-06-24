@@ -4,7 +4,7 @@ export default {
   
     // 模块内部的状态
     state: {
-      locale: 'en'
+      locale: 'zh'
     },
   
     // 同步操作

@@ -2,18 +2,18 @@ import React,{useEffect} from 'react';
 import { connect } from 'dva';
 import style from './QuestionsAdd.scss'
 
-import { Input, Select,Button,Form,Breadcrumb } from 'antd';
+import { Input, Select,Button,Form,Breadcrumb,message } from 'antd';
 import Editor from 'for-editor'
 function QuestionsAdd(props){
  
     const {Getsubject,getsubjects,getExamType,
         GetExamType,QuestionsTypeEs,GetQuestionsType,userInfo,UserInfoID,questionsAdd} = props;
     const { Option } = Select;
-   
-    
-    // Success.code===1? message.success('登陆成功'): message.error('失败');/
-     
-    // const [state,upState]=userState
+    if(props.Success.code===1){
+        message.success("添加成功")
+        props.Success.code=2
+        props.form.resetFields();
+    }
     useEffect(()=>{
          getsubjects()
          getExamType()
@@ -151,9 +151,7 @@ function QuestionsAdd(props){
                                     {
                                         GetQuestionsType.data? 
                                         GetQuestionsType.data.map(item=><Option value={item.questions_type_id} 
-
                                         key={item.questions_type_id}>
-
                                         {item.questions_type_text}</Option>):null
                                     }
                                 </Select>

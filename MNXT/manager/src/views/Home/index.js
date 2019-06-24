@@ -3,10 +3,10 @@ import React from 'react';
 import Menus from '../../components/Menu'
 import { Route,Redirect,Switch } from 'dva/router';
 import { Layout,Dropdown,Avatar,Menu} from 'antd';
-import { QuestionsAdd,QuestionsType,QuestionsView,QuestionViewEdit,QuestionsDetail} from "./Questins";
-import { AddUser,UserShow } from "./UserGuan";
-import { AddExam ,ListExam,createNew,ExamDetail} from "./Exam";
-import {Awaiting } from "./papers";
+// import { QuestionsAdd,QuestionsType,QuestionsView,QuestionViewEdit,QuestionsDetail} from "./Questins";
+// import { AddUser,UserShow } from "./UserGuan";
+// import { AddExam ,ListExam,createNew,ExamDetail} from "./Exam";
+// import {Awaiting } from "./papers";
 
 import {connect} from 'dva';
 const { Header, Content, Sider } = Layout;
@@ -14,6 +14,7 @@ const { Header, Content, Sider } = Layout;
 
 
 function Home(props){
+    
       const menu = (
             <Menu>
                 <Menu.Item>
@@ -33,6 +34,9 @@ function Home(props){
                 </Menu.Item>
             </Menu>
         );
+        if(!props.forbiddenView.length){
+            return null;
+        }
     return(
         <Layout className={style.Home}>
             <Header className={style.header}>
@@ -64,19 +68,24 @@ function Home(props){
                         }}
                         >
                        <Switch>
-                            <Route path="/home/questions/add" exact component={QuestionsAdd}></Route>
-                            <Route path="/home/questions/type" component={QuestionsType}></Route>
-                            <Route path="/home/questions/view" component={QuestionsView}></Route>
-                            <Route path='/home/questions/Edit' component={QuestionViewEdit}></Route>
-                            <Route path='/home/questions/Detail' component={QuestionsDetail}/>
-                            <Route path='/home/userGuan/addUser' component={AddUser}/>
-                            <Route path='/home/userGuan/UserShow' component={UserShow}/>
-                            <Route path='/home/exam/addexam' component={AddExam}/>
-                            <Route path='/home/exam/listExam' component={ListExam}/>
-                            <Route path='/home/exam/edit' component={createNew}/>
-                            <Route path='/home/exam/Detail' component={ExamDetail}/>
-                            <Route path='/home/papers/Awaiting' component={Awaiting}/>
-                            <Redirect from="/home" to="/home/questions/add"></Redirect>
+                        {/* 403路由 */}
+                        {props.forbiddenView.map((item)=>{
+                            return <Redirect key={item} from={item} to="/403"/>
+                        })}
+                        {/* 渲染该用户拥有的路由 */}
+                        <Redirect exact from="/" to="/questions/add"/>
+                        {
+                            props.myView.map(item=>{
+                              
+                                if (item.children){
+                                    return item.children.map((value,key)=>{  
+                                         return  <Route key={key} path={value.path} component={value.component}/>
+                                    })
+                                }
+                            })
+                        }
+                         {/* 剩余路由去404 */}
+                         <Redirect to="/404"/>
                        </Switch>
                         
                     </Content>
@@ -87,10 +96,13 @@ function Home(props){
     )
 }
 const mapStateToProps = state=>{
-    // console.log('state..', state);
+   
     return {
     //   loading: state.loading.global,
-      locale: state.global.locale
+        locale: state.global.locale,
+        myView: state.user.myView,
+        forbiddenView: state.user.forbiddenView
+
     }
   }
   

@@ -1,11 +1,6 @@
-import React, { Component } from 'react'
-
-export default class ClassGrad extends Component {
-    render() {
-        return (
-            <div>
-                班级管理
-            </div>
-        )
-    }
+import Classroom  from './Classroom';
+import Grade  from './Grade';
+import Student  from './Student';
+export{
+    Classroom,Grade,Student
 }

@@ -96,7 +96,7 @@ function AddExam(props) {
                 end_time: values.endTime._d.toLocaleString()
             }))
             
-            props.history.replace('/home/exam/edit')
+            props.history.replace('/exam/edit')
             }
         });
     }

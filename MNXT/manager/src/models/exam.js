@@ -1,4 +1,5 @@
-import { examType,getSubject,getList,createItem,detailExam,studentPaper } from '../services/examManage'
+import { examType,getSubject,getList,createItem,
+  detailExam,mangerGrade,studentDateil } from '../services/examManage'
 export default {
     // 命名空间
     namespace: 'exammanage',
@@ -10,7 +11,8 @@ export default {
        ListPaper: null,
        CreateItem: null,
        getDetaildata: null,
-       ClassData: null
+       ClassData: null,
+       GradeList:null
     },
   
     subscriptions: {
@@ -62,15 +64,24 @@ export default {
           detail
         })
       },
-      //获取学生试卷列表
-      *studentPaper({payload},{call,put}) {
-        const getStudent = yield call(studentPaper)
-        console.log('getStudent...',getStudent)
+      //获取已经分配教室的班级
+      *mangerGrade({payload},{call,put}) {
+        const getStudent = yield call(mangerGrade)
+   
         yield put({
           type:'getStudents',
           getStudent
         })
-      }
+      },
+      //获取学生试卷列表接口
+      *paperClassMate({payload},{call,put}) {
+     
+        const data = yield call(studentDateil,payload)
+        yield put({
+          type:'ClassMate',
+          data
+        })
+      },
     },
   
     // 同步操作
@@ -95,10 +106,15 @@ export default {
       getDetail(state,{detail}) {
         return {...state,getDetaildata:detail.data} 
       },
-       //获取学生试卷列表
+       //获取已经分配教室的班级
        getStudents(state,{getStudent}) {
-         return {...state,ClassData:getStudent.exam}
-       }
+         return {...state,ClassData:getStudent.data}
+       },
+       //获取学生试卷列表接口
+       ClassMate(state,{data}) {
+    
+        return {...state,GradeList:data.exam}
+      },
     },
   
   };

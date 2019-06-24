@@ -43,13 +43,13 @@ class QuestionsView extends Component {
         e.stopPropagation()
         console.log("编辑")
         // console.log(this.props.history)
-        this.props.history.replace('/home/questions/Edit?'+item.questions_id)
+        this.props.history.replace('/questions/Edit?'+item.questions_id)
       }
       questionsDetail=(e,item)=>{
           e.stopPropagation()
         console.log("详情")
 
-          this.props.history.push("/home/questions/Detail?id="+item.questions_id)
+          this.props.history.push("/questions/Detail?id="+item.questions_id)
             // console.log()
       }
        onShowSizeChange(current, pageSize) {

@@ -4,20 +4,21 @@ import { connect } from 'dva';
 import styles from './login.scss';
 function Login(props){
       // 获取login
-let {login,user} = props;
+let {login,isUser} = props;
 
   useEffect(()=>{
    
-    if(user.code===1){
+    if(isUser.code===1){
         //1. 提示登录成功
         message.success('登陆成功');
         //2. 存储cookie
         //3. 跳转页面
-        props.history.replace("/home");
-    }else if(user.code===0){
-        message.error(user.msg);
+        let pathName = decodeURIComponent(props.history.location.search.split('=')[1]);
+        props.history.replace(pathName || '/');
+    }else if(isUser.code===0){
+        message.error(isUser.msg);
     }
-  }, [user]);
+  }, [isUser]);
      // 处理表单提交
   let handleSubmit = e => {
     e.preventDefault();
@@ -86,7 +87,7 @@ Login.defaultProps = {
 }
 const mapStateToProps=state=>{
    
-    return state
+    return state.user
 }
 const mapDispatchToProps=dispatch=>{
     return {

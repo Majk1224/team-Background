@@ -3,47 +3,50 @@ import {connect} from 'dva'
 import {Table,Breadcrumb,Divider} from 'antd'
 
 import './class.scss'
-function AwaitGrade(props) {
+import { get } from 'https';
+function Awaiting(props) {
     //请求数据
     useEffect(()=>{
-        props.getClass()
+        props.getGradeList()
     },[])
     //获取数据
     const {ClassData} = props
-    console.log(ClassData)
+ 
+    const correctPaper=(text)=>{
+  
+        props.getClassMate(text.grade_id)
+       props.history.push('/papers/ClassList')
+    }
     //table表格数据
     const columns = [
         {
           title: '班级名',
-          dataIndex: 'grade_id',
-          key: 'grade_id',
+          dataIndex: 'grade_name',
+          key: 'grade_name',
+        
         },
         {
           title: '课程名称',
-          dataIndex: 'student_name',
-          key: 'student_name',
+          dataIndex: 'subject_text',
+          key: 'subject_text',
         },
         {
           title: '阅卷状态',
-          dataIndex: 'status',
-          key: 'status',
+          dataIndex: '',
+          key: '',
         },
         {
-            title: '课程名称',
-            dataIndex: 'exam_exam_id',
-            key: 'exam_exam_id',
-        },
-        {
-            title: '成材率',
-            dataIndex: 'exam_student_id',
-            key: 'exam_student_id',
+            title: '教室号',
+            dataIndex: 'room_text',
+            key: 'room_text',
         },
         {
           title: '操作',
           key: 'action',
           render: (text, record) => (
+            // console.log(text)
             <span>
-              <a>批卷</a>
+              <a onClick={(e)=>correctPaper(text)}>批卷</a>
             </span>
           ),
         },
@@ -53,7 +56,7 @@ function AwaitGrade(props) {
             <Breadcrumb.Item>待批班级</Breadcrumb.Item>
         </Breadcrumb> 
         <div className='class-list'>
-            <Table columns={columns} dataSource={ClassData}  rowKey={item=>item.student_id} />
+            <Table columns={columns} dataSource={ClassData}  rowKey={item=>item.grade_name} />
         </div>
     </div>
 }
@@ -62,11 +65,17 @@ const mapState = state => {
 }   
 const mapDispatch = dispatch => {
     return {
-        getClass() {
+        getGradeList() {
             dispatch({
-                type:'exammanage/studentPaper'
+                type:'exammanage/mangerGrade'
             }) 
+        },
+        getClassMate(payload){
+          dispatch({
+           type:'exammanage/paperClassMate',
+           payload
+        }) 
         }
     }
 }
-export default connect(mapState,mapDispatch)(AwaitGrade)
+export default connect(mapState,mapDispatch)(Awaiting)

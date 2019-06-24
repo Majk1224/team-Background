@@ -44,9 +44,18 @@ export function detailExam() {
 }
 
 //获取学生试卷列表
-export function studentPaper() {
+export function mangerGrade() {
     return request({
-        url: '/exam/student',
+        url: '/manger/grade',
         type: 'GET'
+    })
+}
+//获取学生试卷列表接口 grade_id=
+export function studentDateil(params) {
+   
+    return request({
+        url: '/exam/student?grade_id='+params,
+        type: 'GET'
+
     })
 }

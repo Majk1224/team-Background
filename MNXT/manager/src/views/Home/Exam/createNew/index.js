@@ -21,7 +21,7 @@ function createNew(props) {
    
     //获取所有试题的数据
     const {AllData} = props
-  
+    console.log(AllData)
     //table表格数据
     const columns = [
         {
@@ -113,7 +113,7 @@ function createNew(props) {
                 <h2>{data.title}</h2>
                 <p>{'考试时间:'+(data.end_time-data.start_time).toLocaleString()*1+'监考人:爱豆  开始考试时间:'
                 +data.start_time+'阅卷人: 撒旦'}</p>
-                <Button type="primary" onClick={()=>props.history.replace('/home/exam/listExam')}>创建试卷</Button>
+                <Button type="primary" onClick={()=>props.history.replace('/exam/listExam')}>创建试卷</Button>
             </div>
         </div>
     </div>

@@ -64,7 +64,7 @@ function ListExam(props) {
           key: 'action',
           render: (text, record) => (
             <span>
-              <a onClick={()=>props.history.replace('/home/exam/Detail?'+text.subject_id)}>详情</a>
+              <a onClick={()=>props.history.replace('/exam/Detail?'+text.subject_id)}>详情</a>
             </span>
           ),
         },
