@@ -7,9 +7,11 @@ import ReactMarkdown from 'react-markdown'
 const exam_StudentDetail=JSON.parse(window.sessionStorage.getItem("exam_StudentDetail"))||null
 function PaperSExamDetail(props){
     console.log(exam_StudentDetail)
+    
     const [num,setNum]=useState(exam_StudentDetail.score)
     const SlideronChange=(e)=>{
         setNum(e)
+        exam_StudentDetail.score=e
     }
  
    const { confirm } = Modal;
@@ -88,8 +90,12 @@ const mapState = state => {
 }   
 const mapDispatch = dispatch => {
     return {
-       
-       
+       //批改试卷
+       correctExam(){
+            dispatch({
+                type:"exammanage/correctExamStudent"
+            })
+       }
     }
 }
 export default connect(mapState,null)(PaperSExamDetail)
