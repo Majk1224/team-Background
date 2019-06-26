@@ -79,9 +79,13 @@ export default {
                   type: 'updateViewAuthority',
                   payload: viewAuthority.data
                 })
+          },
+          //退出登录
+          *logoutFn({payload},{call,put}){
+              yield put({
+                type:"logout"
+              })
           }
-         
-          
     },
   
     // 同步操作
@@ -94,6 +98,7 @@ export default {
         return {...state, userInfo: payload}
       },
       updateViewAuthority(state, {payload}){
+       
         // 筛选出我所有的前端路由权限
         let myView = allView.routes,
             //没有权限访问的路由

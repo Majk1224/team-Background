@@ -15,22 +15,6 @@ function ExamStudent(props) {
   console.log(GradeList)
   //处理数据
   let GradeData=[]
- 
-  // if(ClassData){//grade_name file.grade_id
-  //   ClassData.map(file=>{
-     
-  //    return GradeData= GradeList?GradeList.filter(item=>
-  //     console.log(item)
-  //       // {
-  //       //   if(file.grade_id===item.grade_id){
-  //       //      item.grade_name=file.grade_name
-  //       //     // console.log(item)
-  //       //   }
-  //       // }
-  //         // item.status===1?item.status="已阅":"未阅"
-  //       ):[]
-  //   })
-  // }
   GradeData= GradeList?GradeList.filter(item=>
       item.status===1?item.status="已阅":"未阅"
     ):[]
@@ -54,8 +38,10 @@ function ExamStudent(props) {
         });
     };
     const correctPaper=(text)=>{
-  
+      props.examStudent(text.exam_student_id)
+      props.history.push("/papers/detail")
         // props.getClassMate(text.grade_id)
+      
     }
     //table表格数据
     const columns = [
@@ -96,7 +82,7 @@ function ExamStudent(props) {
           render: (text, record,index) => (
             
             <span>
-              <a>批卷</a>
+              <a onClick={()=>correctPaper(text)}>批卷</a>
             </span>
           ),
         },
@@ -149,12 +135,12 @@ const mapState = state => {
 const mapDispatch = dispatch => {
     return {
        
-        // getClassMate(payload){
-        //   dispatch({
-        //    type:'exammanage/paperClassMate',
-        //    payload
-        // }) 
-        // }
+      examStudent(payload){
+          dispatch({
+            type:'exammanage/exam_Student',
+            payload
+          }) 
+        }
     }
 }
-export default connect(mapState,null)(Form.create()(ExamStudent))
+export default connect(mapState,mapDispatch)(Form.create()(ExamStudent))

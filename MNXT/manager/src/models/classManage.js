@@ -5,11 +5,10 @@ import {
     Delclass,
     Addclass,
     studentInfo,
-    alloCation,
+    allocation,
     studentMsg,
     subjectMsg
-} from '../services/classManage'
-
+    } from '../services/classManage'
 export default {
     // 命名空间
     namespace: 'class',
@@ -45,18 +44,18 @@ export default {
       },
       //删除教室
       *Delclassroom({payload},{call,put}) {
-        //   console.log('payload...',payload)
-          const DelMsg = yield call(Delclassroom,payload)
-        //   console.log('DelMsg...',DelMsg)
+          console.log('payload...',payload)
+          const DelRoom = yield call(Delclassroom,payload)
+          console.log('DelRoom...',DelRoom)
           yield put({
               type:'deleteroom',
-              DelMsg
+              DelRoom
           })
       },
       //添加教室
       *Addclassroom({payload},{call,put}) {
           const newroom = yield call(Addclassroom,payload)
-        //   console.log('newroom...',newroom)
+          console.log('newroom...',newroom)
           yield put({
               type: 'Addnewroom',
               newroom
@@ -64,8 +63,9 @@ export default {
       },
       //添加班级
       *Addclass({payload},{call,put}) {
+          console.log('payload...',payload)
           const newClass = yield call(Addclass,payload)
-        //   console.log('newClass...',newClass)
+          console.log('newClass...',newClass)
           yield put({
               type: 'Addnew',
               newClass
@@ -73,8 +73,9 @@ export default {
       },
       //删除班级
       *Delclass({payload},{call,put}) {
+        console.log('payload...',payload)
           const delMsg = yield call(Delclass,payload)
-        //   console.log('delMsg...',delMsg)
+          console.log('delMsg...',delMsg)
           yield put({
               type: 'DEL',
               delMsg
@@ -91,7 +92,7 @@ export default {
       },
       //获取已经分配教室的班级
       *allocation({payload}, {call,put}) {
-          const getMsg = yield call(alloCation)
+          const getMsg = yield call(allocation)
         //   console.log('getMsg...',getMsg)
           yield put({
               type: 'message',
@@ -124,8 +125,8 @@ export default {
             return {...state, getAllClass:getAllgrade.data}
         },
         //删除教室
-        deleteroom(state,{DelMsg}) {
-            return {...state,getDelroom:DelMsg}
+        deleteroom(state,{DelRoom}) {
+            return {...state,getDelroom:DelRoom}
         },
         //添加教室
         Addnewroom(state,{newroom}) {
@@ -136,8 +137,8 @@ export default {
             return {...state,getAddClass:newClass}
         },
         //删除班级
-        DEL(state,{delMsg}) {
-            return {...state,getDelClass:delMsg}
+        DEL(state,{payload}) {
+            return {...state,getDelClass:payload}
         },
         //获取学生信息
         GetInfo(state,{studentData}) {

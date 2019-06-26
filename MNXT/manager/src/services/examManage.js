@@ -59,3 +59,12 @@ export function studentDateil(params) {
 
     })
 }
+  //获取学生试卷详情接口 *exam_Student
+  export function exam_StudentDetail(params) {
+   
+    return request({
+        url: '/exam/student/'+params,
+        type: 'GET'
+
+    })
+}

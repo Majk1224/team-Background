@@ -24,4 +24,65 @@
       
         }
     }
+    .wrapper{
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: space-between;
+        box-sizing: border-box;
+        position: relative;
+        .wrap-left{
+            width: 60%;
+            background: #fff;
+            border-radius: 10px;
+            padding: 10px;
+            overflow-y: auto;
+            .left-count{
+                width: 100%;
+                height: auto;
+                .left-icon{
+                    font-size: 12px;
+                    color: #1890ff;
+                    background: #e6f7ff;
+                    border-color: #91d5ff;
+                    margin-left: 10px;
+                    padding: 5px;
+                    border-radius: 10px;
+                }
+                .left-markdown{
+                    width: 100%;
+                    flex: 1;
+                    img{
+                        width: 100%;
+                        // height: 500px;
+                    }
+                }
+                .answer{
+                    display: flex;
+                    .answer-student{
+                        width: 48%;
+                    }
+                }
+            }
+            
+        }
+        .wrap-right{
+            width: 30%;
+            height: 300px;
+            margin-left: 10px;
+            background: #fff;
+            border-radius: 10px;
+            position: fixed;
+            right: 20px;
+            top: 150px;
+            padding: 20px;
+            h2{
+                margin: 10px;
+                span{
+                    font-size: 28px;
+                    color: rgb(1, 57, 253);
+                }
+            }
+        }
+    }
 }

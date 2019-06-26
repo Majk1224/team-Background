@@ -1,7 +1,7 @@
 import { QuestionsAdd,QuestionsType,QuestionsView,QuestionViewEdit,QuestionsDetail} from "../views/Home/Questins";
 import { AddUser,UserShow } from "../views/Home/UserGuan";
 import { AddExam ,ListExam,createNew,ExamDetail} from "../views/Home/Exam";
-import {Awaiting,ExamStudent } from "../views/Home/papers";
+import {Awaiting,ExamStudent,PaperSExamDetail} from "../views/Home/papers";
 import {Classroom,Grade,Student} from '../views/Home/ClassGrad'
 export default {
     routes:[
@@ -121,10 +121,16 @@ export default {
                     component:Awaiting//ExamStudent
                 },
                 {
-                    name:"",//获取学生试卷列表
+                    name:"",//获取学生试卷列表 
                     id:"main-examPaperClassList",
                     path:"/papers/ClassList",
                     component:ExamStudent
+                },
+                {
+                    name:"",//阅卷
+                    id:"main-examinationPapers",
+                    path:"/papers/detail",
+                    component:PaperSExamDetail
                 }
             ]
         }

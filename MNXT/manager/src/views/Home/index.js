@@ -18,7 +18,7 @@ function Home(props){
       const menu = (
             <Menu>
                 <Menu.Item>
-                    <a target="_blank" rel="noopener noreferrer" href="http://www.alipay.com/">
+                    <a target="_blank" rel="noopener noreferrer">
                         个人中心
                     </a>
                 </Menu.Item>
@@ -31,9 +31,11 @@ function Home(props){
                     <a target="_blank" rel="noopener noreferrer" href="http://www.tmall.com/">
                         设置
                     </a>
-                </Menu.Item>
+                </Menu.Item> 
+
+
                 <Menu.Item>
-                    <a target="_blank" rel="noopener noreferrer">
+                    <a target="_blank" rel="noopener noreferrer" onClick={()=>props.LogOut()}>
                         退出登录
                     </a>
                 </Menu.Item>
@@ -118,6 +120,11 @@ const mapStateToProps = state=>{
           type: 'global/changeLocale',
           payload
         })
+      },
+      LogOut(){
+          dispatch({
+              type:"user/logoutFn",
+          })
       }
     }
   }

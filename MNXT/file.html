@@ -8,31 +8,60 @@
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 <body>
-    <input type="file" name="" id="">
+    <img  src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2926011400,1899640180&fm=26&gp=0.jpg" alt="" id="img2">
+    <img src="" alt="" id="img3">
+    <input type="file" name="file" id="change" >
+    <canvas id="myCanvas" width="400" height="400"></canvas>
+    <button id="btn">合并</button>
     <script>
+        const canvas = document.getElementById('myCanvas');
+        const context = canvas.getContext('2d');
+        var change = document.getElementById('change')
+        var img2 = document.getElementById('img2')
+        var img3 = document.getElementById('img3')
+
+        var img1 = new Image()
+        
+        img1.crossOrigin = 'anonymous'
+        img2.crossOrigin = 'anonymous'
+
+        var btn = document.getElementById('btn')
+
+        // change.onchange = function(event){
+           
+        // var file = event.target.files[0]
+        // console.log(file)
+        // var url = window.URL.createObjectURL(file)
+        // console.log(url)
+        // img1.src = url
+
+        // }
+        
+
         var ele = document.querySelector('input');
-            ele.onchange = function(e){
-                console.log('e...', e);
+           ele.onchange = function(e){
+            //     console.log('e...', e);
                 let files = e.target.files;
-                // // 创建一个formData
+            //     // // 创建一个formData
                 // let form = new FormData();
-                // for (let i=0,len=files.length; i<len;i++){
-                //     console.log(files[i].name);
-                //     form.append(files[i].name, files[i]);
-                // }
+            //     // for (let i=0,len=files.length; i<len;i++){
+            //     //     console.log(files[i].name);
+            //     //     form.append(files[i].name, files[i]);
+            //     // }
 
-                // axios({
-                //     method: 'post',
-                //     url: 'http://123.206.55.50:11000/upload',
-                //     data: form
-                // }).then(body=>{
-                //     console.log('body...', body);
-                // }).catch(e=>{
-                //     console.log('e..', e);
-                // })
+            //     // axios({
+            //     //     method: 'post',
+            //     //     url: 'http://123.206.55.50:11000/upload',
+            //     //     data: form
+            //     // }).then(body=>{
+            //     //     console.log('body...', body);
+            //     // }).catch(e=>{
+            //     //     console.log('e..', e);
+            //     // })
 
-               // 图片转成base64 
-               
+            //    // 图片转成base64 
+               const img=new Image()
+              
                 for (let i=0,len=files.length; i<len;i++){
                     var reader = new FileReader();
                     reader.onload=function(){
@@ -42,12 +71,29 @@
                                 data: {base64: this.result}
                             }).then(body=>{
                                 console.log('body...', body);
+                              
+                                 img1.src =body.data.data.path
+
                             }).catch(e=>{
                                 console.log('e..', e);
                             })
                     }
                 reader.readAsDataURL(files[i]);
                 }
+           }
+            img1.onload = function(){
+                context.drawImage(img1,10,10,400,400)
+               
+            }
+            btn.onclick=function(){
+                var img =  convertCanvasToImage(canvas)
+            }
+            function convertCanvasToImage(canvas) {
+                // var image = new Image();
+                return img3.src = canvas.toDataURL("image/png",0);
+                // console.log(image)
+            //    document.write(image)
+                // return image;
             }
     </script>
 </body>

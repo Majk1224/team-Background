@@ -1,5 +1,5 @@
 import { examType,getSubject,getList,createItem,
-  detailExam,mangerGrade,studentDateil } from '../services/examManage'
+  detailExam,mangerGrade,studentDateil,exam_StudentDetail } from '../services/examManage'
 export default {
     // 命名空间
     namespace: 'exammanage',
@@ -81,6 +81,13 @@ export default {
           type:'ClassMate',
           data
         })
+      },
+      //获取学生试卷详情接口
+      *exam_Student({payload},{call,put}) {
+     
+        const data = yield call(exam_StudentDetail,payload)
+       window.sessionStorage.setItem("exam_StudentDetail",JSON.stringify(data.data))
+       
       },
     },
   
